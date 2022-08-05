@@ -30,12 +30,9 @@ function App () {
 		}).catch(err => console.log(err));
 	}
 
-	const trigegerLogged =async () => {
+	const trigegerLogged = async () => {
 
 		await setToken(cookie.load('login'))
-		let user = localStorage.getItem('user')
-		console.log(user);
-
 		if (token) {
 			console.log('im logged in');
 			setIsLogged(true)
@@ -44,6 +41,10 @@ function App () {
 		}
 
 	}
+	const handleLogOut = () => {
+		cookie.remove('login');
+		setIsLogged(false)
+	}
 
 	useEffect(() => {
 		trigegerLogged()
@@ -51,7 +52,7 @@ function App () {
 	}, [])
 
 	return (
-		<MoviesContext.Provider value={{ data, setData, genres, setGeners, isLogged, setIsLogged }}>
+		<MoviesContext.Provider value={{ data, setData, genres, setGeners, isLogged, setIsLogged, handleLogOut }}>
 			{isLogged ? (
 				<Router>
 					<div className="App">

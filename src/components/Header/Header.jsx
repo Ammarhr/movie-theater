@@ -8,14 +8,16 @@ import './header.scss';
 
 function Header () {
 	const [searchItem, setSearchItem] = useState({});
-	const { setData, setGeners, geners} = useContext(MoviesContext);
+	// let user = JSON.parse(localStorage.getItem('user'))
+	const [userName, setUserName] = useState(JSON.parse(localStorage.getItem('user')).displayName)
+	const { setData, setGeners, handleLogOut } = useContext(MoviesContext);
 	let navigate = useNavigate();
 
 	const handleChange = (e) => {
 		setSearchItem(e.target.value)
 	}
 	const handleSearch = (e) => {
- 		e.preventDefault()
+		e.preventDefault()
 		axios.get(`https://wookie.codesubmit.io/movies?q=${searchItem}`, {
 
 			headers: {
@@ -23,22 +25,29 @@ function Header () {
 				'Authorization': 'Bearer Wookie2021'
 			},
 		}).then(response => {
-			if(response.data.movies.length !== 0){
+			if (response.data.movies.length !== 0) {
 
 				setGeners(['Search Results'])
 				setData(response.data.movies);
 				navigate("/", { replace: true });
 
 				return response.data.movies;
-			}else{
+			} else {
 				setGeners(null);
 			}
 		}).catch(err => console.log(err));
 	}
+
 	return (
 		<Navbar data-testid="header-1">
 			<Container fluid>
-				<Navbar.Brand href="/"> <span style={{color:"white"}}> Wookie <br /> Movies</span></Navbar.Brand>
+				<Navbar.Brand href="/">
+					<span style={{ color: "white" }}> Wookie <br /> Movies</span>
+				</Navbar.Brand>
+				<Navbar.Brand href="/">
+					{userName ? <h6>{userName}</h6>  : ''}
+					<Button onClick={handleLogOut}>LogOut</Button>
+				</Navbar.Brand>
 				<Navbar.Toggle aria-controls="navbarScroll" />
 				<Navbar.Collapse id="navbarScroll">
 					<Nav
@@ -57,6 +66,7 @@ function Header () {
 						/>
 						<Button type='submit'>Search</Button>
 					</Form>
+
 				</Navbar.Collapse>
 			</Container>
 		</Navbar>
