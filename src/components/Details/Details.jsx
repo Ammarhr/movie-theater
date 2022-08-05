@@ -2,7 +2,7 @@ import { useEffect, useState, useContext } from 'react';
 import { Spinner } from 'react-bootstrap'
 import { useParams } from "react-router-dom";
 import { MoviesContext } from '../../context/MoviesContext';
-
+import './details.scss'
 
 function Details () {
 	const [movieDetails, setMovieDetails] = useState({});
@@ -21,22 +21,29 @@ function Details () {
 		<>
 			{movieDetails ? (
 				<div>
-					<span>{movieDetails.title}</span> |
-					<span>{movieDetails.imdb_rating}</span> |
-					<span>{movieDetails.director}</span> |
-					<span>{movieDetails.released_on}</span>
-					<h6>{movieDetails.cast}</h6>
-					<h6>{movieDetails.length}</h6>
-					<span>{movieDetails.imdb_rating}</span>
-					<img src={movieDetails.poster} alt={movieDetails.title} />
-					<p>{movieDetails.overview}</p>
+						<div className="details-container">
+							<div className="card-details">	<img className="card__image" src={movieDetails.poster} alt={movieDetails.title} />
+								<div className="card__about">
+									<h1 className="card__title">{movieDetails.title}<span className="card__year"> ({movieDetails.imdb_rating})</span></h1>
+									<div className="card__rating-box">
+										<div className="card__rating">
+										<p className="card__rating-num"><span> {movieDetails.released_on?.split('-')[0]}</span> | <span> {movieDetails.length}</span> | <span> {movieDetails.director}</span></p>
+										</div>
+									<div className="card__actors"><span className="card__actor-text">Cast: </span><span className="card__actor">{movieDetails.cast}</span></div>
+									<div className="card__genres"><span className="card__genre">{movieDetails.genres?.join(' ') }</span></div>
+									</div>
+									<br/>
+									<p className="card__description">{movieDetails.overview}</p>
+								</div>
+							</div>
+						</div>
 				</div>
-
 			) : (
 				<Spinner animation="border" role="status">
 					<span className="visually-hidden">Loading...</span>
 				</Spinner>
-			)}
+			)
+			}
 
 		</>
 	)
