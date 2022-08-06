@@ -7,6 +7,7 @@ import './details.scss'
 function Details () {
 	const [movieDetails, setMovieDetails] = useState({});
 	const { data } = useContext(MoviesContext);
+
 	let { id } = useParams();
 
 	// eslint-disable-next-line react-hooks/exhaustive-deps
@@ -20,23 +21,25 @@ function Details () {
 	return (
 		<>
 			{movieDetails ? (
-				<div>
-						<div className="details-container">
-							<div className="card-details">	<img className="card__image" src={movieDetails.poster} alt={movieDetails.title} />
-								<div className="card__about">
-									<h1 className="card__title">{movieDetails.title}<span className="card__year"> ({movieDetails.imdb_rating})</span></h1>
-									<div className="card__rating-box">
-										<div className="card__rating">
-										<p className="card__rating-num"><span> {movieDetails.released_on?.split('-')[0]}</span> | <span> {movieDetails.length}</span> | <span> {movieDetails.director}</span></p>
+				<div className="details-container">
+					<div className="movies">
+						<div className="movies-details">	<img className="movies__image" src={movieDetails.poster} alt={movieDetails.title} />
+							<div className="movies__about">
+								<div className="about__content" >
+									<h1 className="movies__title">{movieDetails.title}<span className="movies__year"> ({movieDetails.imdb_rating})</span></h1>
+									<div className="movies__rating-box">
+										<div className="movies__rating">
+											<p className="movies__rating-num"><span> {movieDetails.released_on?.split('-')[0]}</span> | <span> {movieDetails.length}</span> | <span> {movieDetails.director}</span></p>
 										</div>
-									<div className="card__actors"><span className="card__actor-text">Cast: </span><span className="card__actor">{movieDetails.cast}</span></div>
-									<div className="card__genres"><span className="card__genre">{movieDetails.genres?.join(' ') }</span></div>
+										<div className="movies__actors"><span className="movies__actor-text">Cast: </span><span className="movies__actor">{movieDetails.cast}</span></div>
+										<div className="movies__genres"><span className="movies__genre">{movieDetails.genres?.join(' ')}</span></div>
 									</div>
-									<br/>
-									<p className="card__description">{movieDetails.overview}</p>
+									<br />
+									<p className="movies__description">{movieDetails.overview}</p>
 								</div>
 							</div>
 						</div>
+					</div>
 				</div>
 			) : (
 				<Spinner animation="border" role="status">

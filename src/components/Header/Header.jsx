@@ -2,15 +2,16 @@ import { useState, useContext } from 'react';
 import { MoviesContext } from '../../context/MoviesContext';
 import { useNavigate } from "react-router-dom";
 import { Button, Container, Form, Nav, Navbar } from 'react-bootstrap';
+import cookie from 'react-cookies'
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './header.scss';
 
 function Header () {
+
 	const [searchItem, setSearchItem] = useState({});
-	// let user = JSON.parse(localStorage.getItem('user'))
 	const [userName, setUserName] = useState(JSON.parse(localStorage.getItem('user')).displayName)
-	const { setData, setGeners, handleLogOut } = useContext(MoviesContext);
+	const { setData, setGeners, handleLogOut, setToken } = useContext(MoviesContext);
 	let navigate = useNavigate();
 
 	const handleChange = (e) => {
@@ -22,7 +23,7 @@ function Header () {
 
 			headers: {
 				'Content-Type': 'application/json',
-				'Authorization': 'Bearer Wookie2021'
+				'Authorization': `Bearer ${cookie.load('wookie-token')}`
 			},
 		}).then(response => {
 			if (response.data.movies.length !== 0) {
@@ -34,19 +35,23 @@ function Header () {
 				return response.data.movies;
 			} else {
 				setGeners(null);
+				navigate("/", { replace: true });
 			}
 		}).catch(err => console.log(err));
+	}
+	const navigatToAuth = () => {
+		handleLogOut()
+		setToken(null)
+		navigate("/auth", { replace: true });
 	}
 
 	return (
 		<Navbar data-testid="header-1">
 			<Container fluid>
-				<Navbar.Brand href="/">
+				<Navbar.Brand href='/'>
 					<span style={{ color: "white" }}> Wookie <br /> Movies</span>
 				</Navbar.Brand>
-				<Navbar.Brand href="/">
-					{userName ? <h6>{userName}</h6>  : ''}
-					<Button onClick={handleLogOut}>LogOut</Button>
+				<Navbar.Brand >
 				</Navbar.Brand>
 				<Navbar.Toggle aria-controls="navbarScroll" />
 				<Navbar.Collapse id="navbarScroll">
@@ -55,6 +60,10 @@ function Header () {
 						style={{ maxHeight: '100px' }}
 						navbarScroll
 					>
+						<div className="user">
+							{userName ? <span>{userName}</span> : ''}
+							<Button onClick={navigatToAuth}>LogOut</Button>
+						</div>
 					</Nav>
 					<Form className="d-flex" onSubmit={handleSearch}>
 						<Form.Control
@@ -66,8 +75,8 @@ function Header () {
 						/>
 						<Button type='submit'>Search</Button>
 					</Form>
-
 				</Navbar.Collapse>
+
 			</Container>
 		</Navbar>
 	);
