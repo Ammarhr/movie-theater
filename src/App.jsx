@@ -13,8 +13,7 @@ function App () {
 
 	const [data, setData] = useState([]);
 	const [genres, setGeners] = useState(['Biography', 'Drama', 'History', 'Crime', 'Mystery', 'Thriller', 'Action', 'Adventure', 'War', 'Animation', 'Family'])
-	// const [isLogged, setIsLogged] = useState(false);
-	const [token, setToken] = useState(cookie.load('login'))
+	const [token, setToken] = useState(cookie.load('login'));
 
 	const handleGetMovie = () => {
 		axios.get('https://wookie.codesubmit.io/movies', {
@@ -34,6 +33,7 @@ function App () {
 
 		await setToken(cookie.load('login'))
 	}
+	
 	const handleLogOut = () => {
 		cookie.remove('login');
 		cookie.remove('wookie-token');

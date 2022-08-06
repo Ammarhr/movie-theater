@@ -1,16 +1,17 @@
 
-import { useEffect, useContext } from 'react';
+import React, { useEffect, useContext, Suspense } from 'react';
 import { useNavigate } from "react-router-dom";
 import { Spinner } from 'react-bootstrap'
 import { MoviesContext } from '../../context/MoviesContext';
-import Cards from '../Cards/Cards';
 import MoviesSlider from '../MoviesSlider/MoviesSlider'
 import './home.scss'
+
+const Cards = React.lazy(() => import('../Cards/Cards'));
 
 function Home () {
 	let navigate = useNavigate();
 	let keyCounter = 1;
-	const { data, genres, token ,handleGetMovie} = useContext(MoviesContext);
+	const { data, genres, token } = useContext(MoviesContext);
 
 	useEffect(() => {
 
@@ -21,12 +22,9 @@ function Home () {
 		}
 
 	}, [navigate, token])
-// useEffect(()=>{
-// 	handleGetMovie();
 
-// })
 	return (
-		<>
+		<Suspense fallback={<Spinner />}>
 			<MoviesSlider />
 			{genres ? genres.map(genre => {
 				return (
@@ -44,10 +42,11 @@ function Home () {
 							)}
 						</div>
 					</>
+
 				)
 			}) : <h1>There is no result</h1>}
+		</Suspense>
 
-		</>
 	)
 }
 
