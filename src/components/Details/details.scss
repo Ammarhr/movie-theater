@@ -5,18 +5,13 @@ $color-title: #152d35;
 $color-text: #333;
 $color-text-light: #444;
 $color-link: #333;
-.details-container {
+.movies {
     min-height: 100vh;
-    // padding: 5rem;
-    // display: grid;
-    // grid-template-columns: repeat(auto-fit, minmax(65rem, 1fr));
-    // gap: 5rem;
-    // align-items: center;
 }
 
-.card-details {
-    max-width: 90%;
-    margin: 0 auto;
+.movies-details {
+    max-width: 80%;
+    margin: 5% auto;
     display: grid;
     grid-template-columns: 21rem minmax(25rem, 1fr);
     gap: 1rem;
@@ -32,6 +27,7 @@ $color-link: #333;
         object-position: center;
     }
     &__about {
+        margin-top: 10% !important;
         margin: 8rem;
         display: grid;
         grid-template-rows: repeat(6, min-content);
@@ -39,65 +35,56 @@ $color-link: #333;
         gap: 0.5rem;
         color: #333;
     }
-    &__title {
-        color: $color-title;
-        font-size: 2.5rem;
-        font-weight: 800;
-        margin-top: 15%;
-    }
     &__genre {
         cursor: pointer;
         font-size: 5rem;
         text-transform: uppercase;
-        // margin-right: 2rem;
     }
-    &__rating-box {
-        display: grid;
-        width: 60% !important;
-        grid-template-columns: repeat(3, max-content);
-        align-content: center;
-        align-items: center;
-        gap: 1rem;
-        // margin: 0.5rem 0;
-        color: $color-star-inactive;
+}
+
+.movies__title {
+    color: $color-title;
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-top: 5%;
+    margin-left: 10%;
+}
+
+.movies__rating {
+    width: 100%;
+}
+
+.movies__rating-num {
+    margin-top: 3%;
+    font-size: 1.1rem;
+}
+
+.movies__rating-box {
+    width: 100% !important;
+    align-content: center;
+    align-items: center;
+    gap: 1rem;
+    color: $color-star-inactive;
+}
+
+.about__content {
+    p {
+        width: 75%;
+        margin-left: 10%;
     }
-    &__rating {
-        display: flex;
-    }
-    &__rating-star {
-        margin-right: 4px;
-        height: 2rem;
-        width: 2rem;
-        &--active {
-            fill: $color-star-active;
-        }
-        &--inactive {
-            fill: $color-star-inactive;
-        }
-    }
-    &__rating-num {
-        font-size: 1.4rem;
-    }
-    &__votes {
-        font-size: 1.4rem;
-    }
-    &__no-rating-text {
-        margin-top: 1rem;
-        font-size: 1.4rem;
-        color: $color-star-inactive;
-    }
-    &__description {
-        padding: 1rem 0;
-        align-self: center;
-        font-size: 4rem;
-    }
-    &__actors {}
-    &__actor {}
-    &__actor-text,
-    &__director-text {
-        color: $color-title;
-    }
-    &__directors {}
-    &__director {}
-    &__director-text {}
+}
+
+.movies__actors {
+    width: 75%;
+    margin-left: 10%;
+}
+
+.movies__genres {
+    width: 75%;
+    margin-left: 10%;
+}
+
+.movies__description {
+    align-self: center;
+    font-size: 1.1rem;
 }

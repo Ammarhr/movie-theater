@@ -1,70 +1,96 @@
-# Getting Started with Create React App
+# Wookie-Movies
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<b> Wookie-Movies</b> is a free site to browse a big list of movies grouped by their categories.
+This website build using <b>React</b> with OAuth authentication provider connected to FireBase.
 
-## Available Scripts
 
-In the project directory, you can run:
+<b> Wookie-Movies</b> has been built with React's best practices, which means it promotes a clean folder structure and separation of concerns. <b> Wookie-Movies</b> has main responsive page and contains the fundamental building blocks of a scalable React application:
 
-### `npm start`
+- Auth component (OAuth authentication with Google connected to FireBase)
+- LogOut Functionality
+- Responsive Home page component that contains list of movies displayed as Cards
+- Movie Details component connected with Home component
+- Movies customized searching functionality
+- Movie slider
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Packages:
+-   axios  : for api requests
+-   bootstrap: template components & style
+-   react-bootstrap:template components & style
+-   sass: for styling
+-   firebase: OAuth authentication with Google
+-   react-cookie: for using cookies
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Wookie-Movies Features:
+- Clean folder structure
+- Reuseable components
+- Lazy-loaded feature modules
+- Error logging 
+- Shows spinner for all HTTP requests
 
-### `npm test`
+## How To Use Wookie-Movies:
+Start by Cloning the app from GitHub by running the following command:
+- if you are using ssh:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+``
+  git clone git@github.com:Ammarhr/movie-theater.git
+`` 
+- if you are using https:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+``
+git clone https://github.com/Ammarhr/movie-theater.git
+`` 
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Or you can download a zipped version from this link [Download ZIP]([assets/log-in.png](https://github.com/Ammarhr/movie-theater/archive/refs/heads/master.zip))
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Follow the steps below to start using the app.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- Install NodeJS from [NodeJs](https://nodejs.org/en) Page.
+- Open Terminal (Download Git Bash for Windows or use cmd)
+- Go to your file project
+- Run this command in terminal: ``npm install``
+- Run React serve for a dev server using ``npm start`` command. Navigate to [http://localhost:3000/](http://localhost:3000/). The app will automatically reload if you change any of the source files.
+- Use your favorite IDE to edit the project. 
+  
+## Demo:
+## Auth page:
+## Click on -Sign in with Google- button (note that your google account's display name will be shown on the header)
+![Auth-Page](assets/log-in.png)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Home Page:
+## Movies slider
+![Movies-slider](assets/home-slider-header.png)
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Movies Cards: Click on any movie card to show its own details
+![Movies-Cards](assets/movies-cards.png)
 
-## Learn More
+## Details page:
+## Movie Details
+![Details-page](assets/movie-details.png)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Search functionality:
+## Type a movie name or a part of it then hit search:
+![Searching](assets/searching.png)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## If the search item exists, the result will be as shown below:
+![success](assets/success-search-results.png)
 
-### Code Splitting
+## If it's not, the result will be as shown below:
+![failed](assets/no-results.png)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## Click on LogOut button to log out from the site (it will redirect you to Auth page agin): 
+![Searching](assets/searching.png)
 
-### Analyzing the Bundle Size
+## Testing:
+![Searching](assets/testing.png)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## LightHouse report:
+![Searching](assets/light-house-report.png)
 
-### Making a Progressive Web App
+<br />
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+# Folder Tree:
+![tree](assets/folder-tree.png)

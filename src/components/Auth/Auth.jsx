@@ -8,19 +8,21 @@ import './auth.scss'
 
 function Auth () {
 
-	const { isLogged, setIsLogged } = useContext(MoviesContext);
+	const { token, setToken } = useContext(MoviesContext);
 	let navigate = useNavigate();
 
 	const logIn = () => {
 
 		signInWithPopup(auth, provider).then(result => {
 
-			cookie.save('login', result.user.accessToken)
-
+			
 			const { displayName, email, photoURL } = result.user;
 			localStorage.setItem('user', JSON.stringify({ displayName, email, photoURL }))
 			
-			setIsLogged(true)
+			cookie.save('login', result.user.accessToken)
+			cookie.save('wookie-token', process.env.REACT_APP_TOKEN)
+
+			setToken(cookie.load('login'))
 			navigate("/", { replace: true });
 		}).catch(err => {
 			console.log(err)
@@ -29,9 +31,8 @@ function Auth () {
 
 	return (
 		<>
-			{!isLogged ? (
+			{!token ? (
 				<div>
-
 					<>
 						<section className="login">
 							<div className="login_box">
@@ -41,11 +42,11 @@ function Auth () {
 										<h3>To Enjoy Our App</h3>
 									</div>
 									<div className="contact">
-										<div className="google-btn">
-											<div className="google-icon-wrapper">
+										<div className="google-btn" onClick={logIn}>
+											<div className="google-icon-wrapper" >
 												<img className="google-icon" src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" />
 											</div>
-											<p onClick={logIn} className="btn-text"><b>Sign in with google</b></p>
+											<p  className="btn-text"><b>Sign in with google</b></p>
 										</div>
 									</div>
 								</div>
